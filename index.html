@@ -1,0 +1,1566 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="حكاية عيد ميلاد شخصية معمولة مخصوص لديمو."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta property="og:title" content="DEMO — حكاية تستاهل تتقري" />
+    <meta
+      property="og:description"
+      content="هدية عيد ميلاد شخصية معمولة مخصوص لديمو."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <title>DEMO — حكاية تستاهل تتقري</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #673c58;
+        --muted: #98748c;
+        --rose: #d95082;
+        --rose-dark: #bd3b70;
+        --blush: #f8dbe8;
+        --lilac: #e5d6f5;
+        --gold: #e9bd68;
+        --paper: #fffaf2;
+        --glass: rgb(255 255 255 / 68%);
+        --line: rgb(220 161 190 / 45%);
+        --shadow: 0 20px 60px -20px rgb(190 78 128 / 32%);
+        --gradient: linear-gradient(135deg, #d95082, #c966ad 55%, #e9bd68);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        min-width: 320px;
+        min-height: 100%;
+        scroll-behavior: smooth;
+      }
+
+      body {
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        color: var(--ink);
+        background:
+          radial-gradient(120% 80% at 80% 0%, rgb(233 213 250 / 85%), transparent 60%),
+          radial-gradient(100% 70% at 0% 100%, rgb(255 220 220 / 88%), transparent 60%),
+          linear-gradient(160deg, #fff8fb, #f9e8f0);
+        background-attachment: fixed;
+        font-family: "Cairo", "Segoe UI", Tahoma, Arial, sans-serif;
+      }
+
+      button {
+        color: inherit;
+        font: inherit;
+      }
+
+      button:focus-visible {
+        outline: 3px solid #b7559c;
+        outline-offset: 4px;
+      }
+
+      .app {
+        position: relative;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .petals,
+      .confetti {
+        position: fixed;
+        z-index: 0;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+
+      .petal {
+        position: absolute;
+        bottom: -20px;
+        border-radius: 50%;
+        animation: float-up linear infinite;
+      }
+
+      .petal:nth-child(3n) {
+        border-radius: 60% 0 60% 0;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 30;
+        top: 12px;
+        right: 12px;
+        left: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        max-width: 640px;
+        margin-inline: auto;
+        padding: 7px 14px;
+        border: 1px solid rgb(255 255 255 / 82%);
+        border-radius: 999px;
+        background: rgb(255 255 255 / 70%);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px) saturate(140%);
+      }
+
+      .brand {
+        flex: none;
+        padding: 0;
+        border: 0;
+        background: none;
+        font-family: "Segoe Script", "Brush Script MT", cursive;
+        font-size: 25px;
+        cursor: pointer;
+      }
+
+      .progress-wrap {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        gap: 9px;
+        min-width: 40px;
+      }
+
+      .progress-track {
+        height: 7px;
+        flex: 1;
+        overflow: hidden;
+        border-radius: 99px;
+        background: #f2e6ed;
+      }
+
+      .progress-fill {
+        height: 100%;
+        border-radius: inherit;
+        background: var(--gradient);
+        transition: width 0.7s;
+      }
+
+      .progress-number {
+        color: var(--muted);
+        font-size: 12px;
+        direction: ltr;
+      }
+
+      .header-actions {
+        display: flex;
+        flex: none;
+        gap: 2px;
+      }
+
+      .icon-btn {
+        display: grid;
+        width: 34px;
+        height: 34px;
+        place-items: center;
+        border: 0;
+        border-radius: 50%;
+        background: transparent;
+        color: var(--rose-dark);
+        cursor: pointer;
+        transition: background 0.2s, transform 0.2s;
+      }
+
+      .icon-btn:hover {
+        transform: translateY(-1px);
+        background: var(--blush);
+      }
+
+      main {
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        padding-top: 64px;
+      }
+
+      .scene {
+        display: flex;
+        width: min(100%, 800px);
+        min-height: calc(100vh - 64px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-inline: auto;
+        padding: 58px 20px;
+        text-align: center;
+        animation: fade-up 0.75s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .eyebrow {
+        margin: 0 0 16px;
+        color: var(--muted);
+        font-size: 13px;
+        letter-spacing: 0.25em;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1,
+      .script {
+        font-family: "Segoe Script", "Brush Script MT", cursive;
+        font-weight: 500;
+      }
+
+      h1 {
+        margin-bottom: 0;
+        font-size: clamp(78px, 18vw, 176px);
+        line-height: 1;
+      }
+
+      h2 {
+        margin-bottom: 0;
+        font-size: clamp(30px, 7vw, 48px);
+        line-height: 1.4;
+      }
+
+      .shimmer {
+        background: var(--gradient);
+        background-size: 200% auto;
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        animation: shimmer 6s linear infinite;
+      }
+
+      .gold-text {
+        background: linear-gradient(120deg, #ba842e, #e9bd68, #b77d29);
+        color: transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+      }
+
+      .rose-text {
+        color: var(--rose-dark);
+      }
+
+      .muted {
+        color: var(--muted);
+      }
+
+      .lead {
+        font-size: clamp(18px, 4vw, 24px);
+      }
+
+      .button-primary,
+      .button-soft {
+        display: inline-flex;
+        min-height: 46px;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 11px 24px;
+        border: 0;
+        border-radius: 999px;
+        cursor: pointer;
+        text-decoration: none;
+        transition: transform 0.25s, box-shadow 0.25s, background 0.25s;
+      }
+
+      .button-primary {
+        background: var(--gradient);
+        background-size: 180% auto;
+        color: white;
+        font-weight: 700;
+        box-shadow: var(--shadow);
+      }
+
+      .button-primary:hover {
+        transform: translateY(-2px);
+        background-position: right center;
+        box-shadow: 0 0 0 1px white, 0 0 38px rgb(216 113 162 / 45%);
+      }
+
+      .button-primary:active {
+        transform: scale(0.97);
+      }
+
+      .button-soft {
+        min-height: 38px;
+        padding: 8px 16px;
+        border: 1px solid var(--line);
+        background: rgb(255 255 255 / 66%);
+        color: var(--ink);
+        font-size: 14px;
+        font-weight: 600;
+        backdrop-filter: blur(10px);
+      }
+
+      .button-soft:hover {
+        transform: translateY(-1px);
+        background: white;
+      }
+
+      .text-button {
+        padding: 8px;
+        border: 0;
+        background: none;
+        color: var(--muted);
+        font-size: 14px;
+        text-decoration: underline;
+        text-underline-offset: 4px;
+        cursor: pointer;
+      }
+
+      .glass {
+        border: 1px solid rgb(255 255 255 / 82%);
+        background: var(--glass);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px) saturate(140%);
+      }
+
+      .gate-copy {
+        min-height: 36px;
+        margin: 26px 0 0;
+        font-size: clamp(18px, 4vw, 24px);
+      }
+
+      .gate-copy.second {
+        margin-top: 8px;
+        color: var(--rose-dark);
+        font-size: clamp(21px, 5vw, 30px);
+      }
+
+      .gate-action {
+        min-height: 68px;
+        padding-top: 14px;
+      }
+
+      .envelope {
+        position: relative;
+        width: min(100%, 384px);
+        height: 250px;
+        border: 0;
+        border-radius: 22px;
+        background: var(--gradient);
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: transform 0.4s;
+      }
+
+      .envelope:hover {
+        transform: rotate(-2deg) scale(1.03);
+      }
+
+      .envelope-flap {
+        position: absolute;
+        inset: 0 0 auto;
+        height: 52%;
+        border-radius: 22px 22px 0 0;
+        background: rgb(145 38 87 / 30%);
+        clip-path: polygon(0 0, 100% 0, 50% 100%);
+      }
+
+      .seal {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        width: 58px;
+        height: 58px;
+        place-items: center;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--gold);
+        color: white;
+        font-family: "Segoe Script", cursive;
+        font-size: 27px;
+        box-shadow: 0 0 26px rgb(255 255 255 / 80%);
+      }
+
+      .envelope-label {
+        position: absolute;
+        right: 0;
+        bottom: 15px;
+        left: 0;
+        color: white;
+        font-family: "Segoe Script", cursive;
+        font-size: 30px;
+      }
+
+      .letter-card {
+        width: min(100%, 650px);
+        padding: clamp(24px, 7vw, 48px);
+        border-radius: 28px;
+        text-align: right;
+        animation: letter-out 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      }
+
+      .letter-card p,
+      .letter-scroll p,
+      .hidden-letter p {
+        font-size: clamp(17px, 4vw, 21px);
+        line-height: 2.1;
+      }
+
+      .letter-card p:first-child {
+        color: var(--rose-dark);
+        font-size: 30px;
+      }
+
+      .cake {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 42px;
+      }
+
+      .candles {
+        z-index: 1;
+        display: flex;
+        gap: 20px;
+      }
+
+      .candle {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .flame {
+        width: 12px;
+        height: 24px;
+        margin-bottom: 4px;
+        border-radius: 50% 50% 45% 45%;
+        background: var(--gold);
+        box-shadow: 0 0 26px rgb(233 189 104 / 80%);
+        animation: flame 0.5s ease-in-out infinite;
+        transform-origin: bottom;
+      }
+
+      .flame.out {
+        opacity: 0;
+        animation: none;
+      }
+
+      .wick {
+        width: 12px;
+        height: 48px;
+        border-radius: 3px;
+        background: repeating-linear-gradient(45deg, #e5d6f5 0 4px, #fffaf2 4px 8px);
+      }
+
+      .cake-top {
+        width: 288px;
+        height: 64px;
+        border-radius: 24px 24px 0 0;
+        background: #f6c9dc;
+        box-shadow: var(--shadow);
+      }
+
+      .cake-line {
+        width: 288px;
+        height: 15px;
+        background: rgb(217 80 130 / 70%);
+      }
+
+      .cake-base {
+        width: 320px;
+        height: 76px;
+        border-radius: 0 0 18px 18px;
+        background: #f4e2ef;
+        box-shadow: var(--shadow);
+      }
+
+      .cake-plate {
+        width: min(384px, 90vw);
+        height: 12px;
+        border-radius: 99px;
+        background: rgb(233 189 104 / 70%);
+      }
+
+      .confetti-piece {
+        position: absolute;
+        top: 0;
+        width: 6px;
+        height: 12px;
+        border-radius: 2px;
+        animation: confetti 3.5s ease-in forwards;
+      }
+
+      .cards-grid,
+      .chapter-grid {
+        display: grid;
+        width: 100%;
+        gap: 18px;
+        margin-top: 36px;
+      }
+
+      .cards-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .chapter-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .memory-card,
+      .chapter-card {
+        position: relative;
+        min-height: 150px;
+        padding: 24px;
+        border-radius: 26px;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .memory-card:hover,
+      .chapter-card:hover {
+        transform: translateY(-4px);
+      }
+
+      .memory-card.selected {
+        transform: translateY(-4px);
+        box-shadow: 0 0 0 2px var(--gold), 0 0 34px rgb(232 184 100 / 36%);
+      }
+
+      .memory-card .script,
+      .chapter-number {
+        display: block;
+        margin-bottom: 12px;
+        font-size: 32px;
+      }
+
+      .gift-box {
+        position: relative;
+        width: 192px;
+        height: 160px;
+        margin-top: 46px;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+
+      .gift-lid {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        right: -8px;
+        left: -8px;
+        height: 42px;
+        border-radius: 12px;
+        background: var(--rose);
+        box-shadow: var(--shadow);
+        transition: transform 0.7s;
+      }
+
+      .gift-box.open .gift-lid {
+        transform: translateY(-38px) rotate(-12deg);
+      }
+
+      .gift-body {
+        position: absolute;
+        inset: 32px 0 0;
+        border-radius: 0 0 20px 20px;
+        background: var(--gradient);
+        box-shadow: var(--shadow);
+      }
+
+      .gift-ribbon {
+        position: absolute;
+        z-index: 3;
+        inset: 0 auto 0 50%;
+        width: 20px;
+        transform: translateX(-50%);
+        background: rgb(233 189 104 / 85%);
+      }
+
+      .box-notes {
+        display: grid;
+        width: 100%;
+        gap: 14px;
+        margin-top: 30px;
+      }
+
+      .box-note {
+        padding: 16px 24px;
+        border-radius: 20px;
+        font-size: 18px;
+        line-height: 1.9;
+        animation: fade-up 0.7s both;
+      }
+
+      .stars-field {
+        position: relative;
+        width: 100%;
+        height: 360px;
+        margin-top: 28px;
+        overflow: hidden;
+        border-radius: 28px;
+        background: linear-gradient(180deg, #8964aa, #bd79aa 62%, #f0b69c);
+        box-shadow: var(--shadow);
+      }
+
+      .dust {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--paper);
+        animation: twinkle 2.6s ease-in-out infinite;
+      }
+
+      .star {
+        position: absolute;
+        z-index: 1;
+        padding: 0;
+        transform: translate(-50%, -50%);
+        border: 0;
+        background: none;
+        color: var(--paper);
+        font-size: 42px;
+        text-shadow: 0 0 18px currentColor;
+        animation: twinkle 2.6s ease-in-out infinite;
+        cursor: pointer;
+        transition: color 0.2s, scale 0.2s;
+      }
+
+      .star:hover,
+      .star.picked {
+        color: var(--gold);
+      }
+
+      .chapter-card {
+        min-height: 130px;
+        text-align: right;
+      }
+
+      .chapter-title {
+        display: block;
+        font-size: 23px;
+        font-weight: 700;
+      }
+
+      .chapter-status {
+        display: block;
+        margin-top: 5px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .letter-tools {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 24px;
+      }
+
+      .letter-progress {
+        width: 100%;
+        height: 4px;
+        margin-top: 16px;
+        overflow: hidden;
+        border-radius: 99px;
+        background: #f2e6ed;
+      }
+
+      .letter-progress > span {
+        display: block;
+        height: 100%;
+        background: var(--gradient);
+        transition: width 0.2s;
+      }
+
+      .letter-scroll {
+        width: 100%;
+        max-height: 68vh;
+        margin-top: 14px;
+        overflow-y: auto;
+        padding: clamp(24px, 7vw, 48px);
+        border-radius: 28px;
+        background: var(--paper);
+        color: #62475a;
+        box-shadow: var(--shadow);
+        text-align: right;
+        scrollbar-color: #d991b3 #f9eaf1;
+      }
+
+      .letter-scroll.pink-paper {
+        background: #f9dfea;
+        color: var(--ink);
+      }
+
+      .letter-scroll p:first-child {
+        color: var(--rose-dark);
+        font-size: clamp(24px, 5vw, 32px);
+      }
+
+      .letter-signature {
+        margin-top: 40px;
+        color: var(--rose-dark);
+        font-family: "Segoe Script", "Brush Script MT", cursive;
+        font-size: 38px;
+        text-align: left;
+      }
+
+      .hidden-envelope {
+        position: relative;
+        width: 160px;
+        height: 112px;
+        margin-top: 36px;
+        border: 0;
+        border-radius: 14px;
+        background: var(--gradient);
+        box-shadow: var(--shadow);
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+
+      .hidden-envelope:hover {
+        transform: scale(1.08);
+      }
+
+      .hidden-envelope span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: grid;
+        width: 42px;
+        height: 42px;
+        place-items: center;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: var(--gold);
+        color: white;
+        font-size: 23px;
+      }
+
+      .hidden-letter {
+        width: min(100%, 650px);
+        margin-top: 28px;
+        padding: clamp(24px, 6vw, 40px);
+        border-radius: 28px;
+        text-align: right;
+        animation: letter-out 0.7s both;
+      }
+
+      .gather-field {
+        position: relative;
+        display: grid;
+        width: 100%;
+        height: 160px;
+        place-items: center;
+        margin-top: 32px;
+      }
+
+      .gather-dot {
+        position: absolute;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--gold);
+        box-shadow: 0 0 15px rgb(233 189 104 / 85%);
+        transition: transform 1.8s ease-out, opacity 1.8s ease-out;
+      }
+
+      .gather-name {
+        transform: scale(0.5);
+        opacity: 0;
+        transition: transform 2s, opacity 2s;
+        font-size: 80px;
+      }
+
+      .gather-name.visible {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      .toast {
+        position: fixed;
+        z-index: 50;
+        bottom: 24px;
+        left: 50%;
+        max-width: calc(100vw - 32px);
+        transform: translateX(-50%);
+        padding: 11px 20px;
+        border-radius: 999px;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        animation: fade-up 0.4s both;
+      }
+
+      .bloom {
+        position: fixed;
+        z-index: 40;
+        top: 50%;
+        left: 50%;
+        width: 60vmax;
+        height: 60vmax;
+        transform: translate(-50%, -50%) scale(0);
+        border-radius: 50%;
+        background: var(--blush);
+        pointer-events: none;
+        animation: bloom 1.2s ease-out forwards;
+      }
+
+      .no-motion *,
+      .no-motion *::before,
+      .no-motion *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      @keyframes shimmer {
+        to { background-position: 200% center; }
+      }
+
+      @keyframes float-up {
+        0% { transform: translateY(0) scale(1); opacity: 0; }
+        10% { opacity: 0.9; }
+        100% { transform: translateY(-110vh) scale(0.6); opacity: 0; }
+      }
+
+      @keyframes fade-up {
+        from { opacity: 0; transform: translateY(18px); filter: blur(5px); }
+        to { opacity: 1; transform: none; filter: none; }
+      }
+
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.55; transform: scale(0.85); }
+        50% { opacity: 1; transform: scale(1.15); }
+      }
+
+      @keyframes flame {
+        0%, 100% { transform: scaleY(1) rotate(-2deg); }
+        50% { transform: scaleY(1.15) rotate(2deg); }
+      }
+
+      @keyframes bloom {
+        from { transform: translate(-50%, -50%) scale(0); opacity: 0.8; }
+        to { transform: translate(-50%, -50%) scale(3); opacity: 0; }
+      }
+
+      @keyframes confetti {
+        from { transform: translateY(-10vh) rotate(0); opacity: 1; }
+        to { transform: translateY(105vh) rotate(720deg); opacity: 0.8; }
+      }
+
+      @keyframes letter-out {
+        from { transform: translateY(40%); opacity: 0; }
+        to { transform: translateY(-4%); opacity: 1; }
+      }
+
+      @media (max-width: 600px) {
+        .site-header {
+          gap: 4px;
+          padding-inline: 10px;
+        }
+
+        .brand {
+          font-size: 21px;
+        }
+
+        .icon-btn {
+          width: 30px;
+          height: 32px;
+        }
+
+        .cards-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .memory-card {
+          min-height: 116px;
+        }
+
+        .chapter-grid {
+          gap: 12px;
+        }
+
+        .chapter-card {
+          min-height: 126px;
+          padding: 17px;
+        }
+
+        .chapter-title {
+          font-size: 19px;
+        }
+
+        .stars-field {
+          height: 300px;
+        }
+
+        .scene {
+          padding-inline: 18px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app" id="app">
+      <div class="petals" id="petals" aria-hidden="true"></div>
+      <main id="main"></main>
+    </div>
+
+    <script>
+      (() => {
+        "use strict";
+
+        const SCENES = [
+          "gate", "envelope", "cake", "cards", "box",
+          "stars", "chapters", "letter", "hidden", "end",
+        ];
+        const STORAGE_KEY = "demo-gift-state-v1";
+        const LETTER_SCROLL_KEY = "demo-letter-scroll";
+        const LETTER_PARAGRAPHS = [
+          "إلى ديمو.. واحدة من أجمل الصدف اللي حصلتلي في حياتي.",
+          "بصي يا ديمو، أنا مش عارف أبدأ كلامي معاكي منين، ولا حتى عارف إزاي أقدر أكتب كلام يوصف بجد كل اللي جوايا، بس كل اللي أعرفه إني كان نفسي في يوم أقولك إنتِ بالنسبالي إيه، وتفهمي قد إيه أنا ممتن إن الأيام عرّفتني على إنسانة زيك.",
+          "عارفة يا ديمو، ساعات في حياتنا بنقابل ناس كتير، بنتكلم معاهم ونضحك ونهزر، وبعد فترة كل واحد بيكمل طريقه، وفي ناس تانية بتعدّي في حياتنا وتسيب ذكرى حلوة، لكن فيه ناس قليلة أوي وجودها بيكون أكبر من مجرد معرفة، ناس بتسيب أثر جوانا من غير ما تحس، وبتخلّي أيامنا أحسن لمجرد إنها موجودة فيها، وإنتِ بالنسبالي من الناس دي.",
+          "أنا من وقت ما عرفتك وإنتِ ساعدتيني في حاجات كتير أوي، وفدتيني أكتر مما ممكن تكوني متخيّلة، ويمكن فيه حاجات عملتيها بالنسبالك كانت بسيطة أو عادية، لكن بالنسبالي كانت فارقة بجد. يمكن إنتِ نسيتي مواقف وقفتي فيها جنبي، أو كلمة قولتيها ليا في وقت كنت محتاج أسمعها، أو نصيحة ساعدتيني بيها، لكن أنا مش بنسى الحاجات دي بسهولة؛ لأن الإنسان اللي بيعمل معانا خير من قلبه بيستحق إننا نفتكره بالخير دايمًا.",
+          "وعايزك تعرفي حاجة مهمة أوي يا ديمو: أنا مش مقدّر الحاجات اللي عملتيها عشاني وبس، أنا مقدّر إنتِ مين كمان. مقدّر وقتك ومجهودك، ومقدّر كل مرة حاولتي تساعديني فيها، وكل مرة كنتِ سبب إني أفهم حاجة أو أتعلم حاجة جديدة أو أخطو خطوة لقدّام. وصدقيني، مش أي حد عنده الاستعداد إنه يساعد غيره بالشكل ده، وعلشان كده وجودك بالنسبالي مش حاجة عادية أبدًا.",
+          "يا ديمو، لو في يوم حسّيتي إنك مش فارقة، أو إن الحاجات الحلوة اللي بتعمليها مع الناس بتتنسى، افتكري إن فيه شخص هنا فاكر إنك ساعدتيه، وفاكر إنك كنتِ سبب في حاجات كتير حلوة حصلتله، وشايف إن معرفتك مكسب حقيقي. يمكن أنا مش بعرف أعبّر عن امتناني بالشكل الكافي كل مرة، ويمكن مش دايمًا بعرف أختار الكلام الصح، لكن ده مش معناه أبدًا إن الحاجات دي مش فارقة معايا. بالعكس، فيه كلام كتير جوانا بيكون أكبر من إننا نعرف نقوله بسهولة.",
+          "أنا بتمنالك من كل قلبي إن الحياة تديكي على قد قلبك الحلو، وإن كل خير بتعمليه يرجعلك أضعاف، وإن ربنا يفتحلك أبواب رزق وفرح ونجاح من أماكن عمرك ما توقّعتيها، وإن كل حلم نفسك تحققيه ييجي اليوم اللي تبصي فيه وراكي وتكتشفي إنك وصلتي لحاجة أكبر وأجمل من اللي كنتِ بتتمنيها. بتمنالك أيام تطبطب على قلبك، وناس تحبك بصدق، وضحكة تطلع من قلبك من غير ما يكون وراها أي حزن، وراحة بال تخليكي مطمنة إن بكرة هيكون أحسن.",
+          "ونفسي كمان تفضلي دايمًا مؤمنة بنفسك وبقدراتك، حتى في الأيام اللي تشكي فيها في نفسك، وحتى لما الدنيا تبقى مش ماشية زي ما إنتِ عايزة. متنسيش إنك مش مطالبة تكوني قوية طول الوقت، ومش لازم كل يوم يكون يومك المثالي، ومش لازم تنجحي في كل حاجة من أول مرة علشان تكوني شخص مميز. إنتِ ليكي قيمتك حتى وإنتِ تعبانة، وليكي مكانتك حتى وإنتِ مش قادرة تعملي حاجة، وتستاهلي الحب والتقدير في كل حالاتك.",
+          "وعايز أقولك شكرًا يا ديمو، بس مش شكرًا عادية وخلاص؛ شكرًا على كل مرة ساعدتيني فيها، شكرًا على كل معلومة أو نصيحة فادتني، شكرًا على كل مجهود بذلتيه عشاني، وشكرًا على إنك كنتِ جزء من رحلتي ومن الحاجات اللي اتعلمتها واستفدتها. شكرًا لأن معرفتك ما كانتش مجرد اسم ظهر في حياتي وعدّى، لكنها معرفة ليها معنى وقيمة عندي.",
+          "ومهما عدّى وقت، أتمنى لما تفتكري إنك عرفتي شخص اسمه عمر، تفتكري إنك في يوم ساعدتيه، وإنه كان مقدّر ده من قلبه، وإنه كان بيتمنالك الخير بصدق.",
+          "وبالمناسبة، أنا مش بكتبلك الكلام ده علشان إنتِ عملتيلي حاجات وعايز أردّهالك بكلام حلو، ولا علشان مستني منك أي حاجة في المقابل. أنا بكتبه لأنك تستاهلي تسمعي كلام حلو، ولأن الشكر ساعات بيتأخر جوانا لحد ما نلاقي الطريقة اللي نطلّعه بيها، ولأن فيه أشخاص لازم نقولهم إنهم فارقوا معانا بدل ما نفضل ساكتين ونفترض إنهم عارفين.",
+          "يا ديمو، أتمنى صداقتنا تفضل ذكرى حلوة ومستمرة، وأتمنى أفضل أشوفك بتنجحي وبتكبري وبتحققي الحاجات اللي بتحلمي بيها، وأكون من الناس اللي تفرحلك بصدق لما يحصل معاكي شيء حلو. ولو في يوم احتجتي حد يسمعك أو يشجعك أو يفرحلك، أتمنى أكون صديق كويس ليكي زي ما إنتِ كنتِ شخص مفيد ومميز في حياتي. مش لأن فيه حسابات لازم تترد، لكن لأن الصداقة الحقيقية فيها تقدير متبادل، وكل واحد فيها بيتمنى للتاني الخير من قلبه.",
+          "وعارفة إيه يا ديمو؟",
+          "لو رجع بيا الوقت لأول يوم اتعرفت عليكي فيه، وأنا عارف كل الحاجات الحلوة اللي هتضيفيها لحياتي، كنت هكون ممتن من أول لحظة إن الطريق جمعني بيكي. مش علشان كل حاجة هتعمليها ليا، لكن علشان فرصة إني أعرف إنسانة زيك في حد ذاتها حاجة جميلة تستحق التقدير.",
+          "أنا مش هقولك إن عندي كلام يقدر يوفيكي حقك، لأن الحقيقة إن مفيش رسالة مهما كانت طويلة هتقدر تحكي كل الامتنان اللي جوايا، لكن أقدر أقولك إنك شخص أنا سعيد إني عرفته، وإن الحاجات اللي عملتيها عشاني ليها مكانها عندي، وإن تمنياتي ليكي بالخير مش مجرد مجاملة بتتقال، دي دعوة صادقة من قلبي إنك تكوني بخير دايمًا.",
+          "وأخيرًا يا ديمو، خدي بالك من قلبك الحلو، ومن أحلامك، ومن نفسك، ومتسمحيش لأي حاجة تقلل من قيمتك في عين نفسك. أتمنى تفضلي تضحكي الضحكة اللي تليق بيكي، وتحققي الأحلام اللي بتفرّح قلبك، وتعيشي أيام لما تفتكريها بعد سنين تبتسمي وتقولي: الحمد لله إن كل حاجة عدّت، وإن الحياة كان مخبّيالي كل الخير ده.",
+          "ربنا يسعدك سعادة تخلي قلبك ينسى كل مرة زعل فيها، ويعوّضك عن كل لحظة تعبتي فيها، ويرزقك بناس قلوبها صافية، ويكتبلك من الخير أكتر مما بتتمني، ويخلي كل خطوة جاية في حياتك أقرب لحلمك وأبعد عن وجعك.",
+          "شكرًا يا ديمو، مش بس على كل حاجة عملتيها عشاني، لكن على إنك ديمو اللي عرفتها، وصاحبتي اللي أنا ممتن إن الأيام جمعتني بيها.",
+          "ولو فيه حاجة واحدة أتمنى الكلام ده يوصّلهالك، فهي إنك تعرفي إنك مش شخص عابر في كل الحكايات اللي دخلتيها، وإن الخير اللي بتعمليه ممكن يفضل عايش في قلب حد حتى بعد ما الموقف نفسه يعدّي بوقت طويل.",
+          "أتمنى الرسالة دي تكون سبب في ابتسامتك النهارده، وإنك تحسي وإنتِ بتقريها إن فيه حد فعلًا مقدّرك، وفرحان إنه عرفك، وبيتمنالك الخير من قلبه.",
+          "شكرًا إنك كنتِ جزء من حكايتي يا ديمو، ويا رب حكايتك إنتِ كمان تكون مليانة فرح ونجاح وحاجات أجمل بكتير من كل اللي بتحلمي بيه.",
+          "إنتِ تستاهلي كل خير يا ديمو، ودي مش مجاملة، دي حاجة أنا فعلًا بتمنّاهالك من قلبي.",
+        ];
+        const ENVELOPE_TEXT = [
+          "إلى ديمو...",
+          "النهارده عيد ميلادك، بس الرسالة دي مش مجرد تهنئة وخلاص.",
+          "دي رسالة لشخص وجوده فرّق، وشخص يستحق يعرف إن الحاجات الحلوة اللي عملها لسه عايشة في قلب حد.",
+        ];
+        const CARDS = [
+          "شكرًا على كل مرة ساعدتيني فيها.",
+          "شكرًا على كل حاجة اتعلمتها واستفدتها بسببك.",
+          "وشكرًا لأن معرفتك في حد ذاتها كانت حاجة جميلة.",
+        ];
+        const BOX_NOTES = [
+          "فيه حاجات ممكن تكون بسيطة بالنسبالك، لكنها فارقة جدًا عند غيرك.",
+          "الخير اللي بتعمليه مش لازم تفتكريه علشان يفضل أثره موجود.",
+          "فيه حد هنا مقدّر وجودك، وبيتمنالك الخير من قلبه.",
+        ];
+        const WISHES = [
+          "يا رب كل حلم نفسك تحققيه يقرب منك يوم بعد يوم.",
+          "يا رب تلاقي راحة البال والفرح والناس اللي تقدّرك بصدق.",
+          "يا رب كل خير بتعمليه يرجعلك أضعاف، وتكون أيامك الجاية أجمل.",
+        ];
+        const HIDDEN = [
+          "يا ديمو، يمكن مش هعرف أوصفلك بالكلام قد إيه أنا ممتن إني عرفتك، لكن أتمنى تكوني عرفتي من الرسالة دي إن وجودك كان له معنى، وإن الخير اللي عملتيه متقدّر، وإن فيه شخص بيتمنالك السعادة والنجاح من قلبه.",
+          "خليكي دايمًا فاكرة إنك تستاهلي الخير، مش علشان الحاجات اللي بتعمليها للناس بس، لكن علشان إنتِ نفسك تستاهلي تكوني مبسوطة ومقدّرة ومطمنة.",
+          "ربنا يسعد قلبك يا ديمو، ويكتبلك أيامًا أجمل من كل اللي بتتمنيه.",
+        ];
+        const CHAPTERS = [
+          { title: "أول المعرفة", scene: "envelope" },
+          { title: "حاجات فرقت", scene: "cards" },
+          { title: "كلام كان لازم يتقال", scene: "letter" },
+          { title: "أمنيات من القلب", scene: "stars" },
+        ];
+        const MELODY = [
+          [392, .375], [392, .125], [440, .5], [392, .5], [523, .5], [494, 1],
+          [392, .375], [392, .125], [440, .5], [392, .5], [587, .5], [523, 1],
+          [392, .375], [392, .125], [784, .5], [659, .5], [523, .5], [494, .5], [440, 1],
+          [698, .375], [698, .125], [659, .5], [523, .5], [587, .5], [523, 1.5],
+        ];
+
+        const app = document.getElementById("app");
+        const main = document.getElementById("main");
+        const petals = document.getElementById("petals");
+        let scene = "gate";
+        let visited = ["gate"];
+        let motion = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        let toastTimer = 0;
+        let sceneTimers = [];
+        let musicContext = null;
+        let musicTimer = 0;
+        let musicOn = false;
+        let sceneData = {};
+        let bloomVisible = false;
+
+        try {
+          const saved = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || "null");
+          if (saved && SCENES.includes(saved.scene)) scene = saved.scene;
+          if (saved && Array.isArray(saved.visited)) {
+            visited = saved.visited.filter((item) => SCENES.includes(item));
+            if (!visited.includes(scene)) visited.push(scene);
+          }
+        } catch (error) {
+          console.warn("تعذر استعادة تقدم الحكاية من التخزين.", error);
+        }
+
+        function seeded(seed) {
+          let value = seed * 9301 + 49297;
+          return () => ((value = (value * 9301 + 49297) % 233280) / 233280);
+        }
+
+        function escapeHtml(value) {
+          return String(value).replace(/[&<>"']/g, (char) => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;",
+          })[char]);
+        }
+
+        function schedule(callback, delay) {
+          const timer = window.setTimeout(callback, delay);
+          sceneTimers.push(timer);
+          return timer;
+        }
+
+        function clearSceneTimers() {
+          sceneTimers.forEach(window.clearTimeout);
+          sceneTimers = [];
+        }
+
+        function persist() {
+          try {
+            sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ scene, visited }));
+          } catch (error) {
+            console.warn("تعذر حفظ تقدم الحكاية.", error);
+          }
+        }
+
+        function go(nextScene) {
+          if (!SCENES.includes(nextScene)) return;
+          clearSceneTimers();
+          scene = nextScene;
+          if (!visited.includes(scene)) visited.push(scene);
+          sceneData = {};
+          bloomVisible = false;
+          persist();
+          render();
+          window.scrollTo({ top: 0, behavior: motion ? "smooth" : "auto" });
+        }
+
+        function notify(message) {
+          document.querySelector(".toast")?.remove();
+          const toast = document.createElement("div");
+          toast.className = "toast glass";
+          toast.setAttribute("role", "status");
+          toast.textContent = message;
+          app.append(toast);
+          window.clearTimeout(toastTimer);
+          toastTimer = window.setTimeout(() => toast.remove(), 2600);
+        }
+
+        async function copyText(text) {
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(text);
+              return true;
+            }
+          } catch {
+            // Use the local selection fallback below when clipboard permission is unavailable.
+          }
+          try {
+            const textarea = document.createElement("textarea");
+            textarea.value = text;
+            textarea.style.position = "fixed";
+            textarea.style.opacity = "0";
+            document.body.append(textarea);
+            textarea.select();
+            const copied = document.execCommand("copy");
+            textarea.remove();
+            return copied;
+          } catch {
+            return false;
+          }
+        }
+
+        async function share() {
+          if (navigator.share) {
+            try {
+              await navigator.share({
+                title: "DEMO — حكاية تستاهل تتقري",
+                url: window.location.href,
+              });
+              return;
+            } catch (error) {
+              if (error && error.name === "AbortError") return;
+            }
+          }
+          notify((await copyText(window.location.href))
+            ? "اتنسخ الرابط"
+            : "معرفناش ننسخ الرابط، انسخيه من شريط العنوان");
+        }
+
+        function renderPetals() {
+          if (!motion) {
+            petals.replaceChildren();
+            return;
+          }
+          const random = seeded(7);
+          petals.innerHTML = Array.from({ length: 22 }, (_, i) => {
+            const left = random() * 100;
+            const size = 6 + random() * 14;
+            const duration = 14 + random() * 16;
+            const delay = -random() * 30;
+            const kind = i % 3;
+            const color = kind === 0 ? "#f3cede" : kind === 1 ? "#e9bd68" : "#d9c8ed";
+            const dimension = kind === 1 ? size / 3 : size;
+            return `<span class="petal" style="left:${left}%;width:${dimension}px;height:${dimension}px;background:${color};animation-duration:${duration}s;animation-delay:${delay}s"></span>`;
+          }).join("");
+        }
+
+        function header() {
+          if (scene === "gate") return "";
+          const progress = Math.round((visited.length / SCENES.length) * 100);
+          return `
+            <header class="site-header">
+              <button class="brand shimmer" data-action="chapters" aria-label="العودة إلى دفتر الحكاية">Demo</button>
+              <div class="progress-wrap" aria-label="اكتشفتي ${progress}% من الحكاية">
+                <div class="progress-track"><div class="progress-fill" style="width:${progress}%"></div></div>
+                <span class="progress-number">${progress}%</span>
+              </div>
+              <div class="header-actions">
+                <button class="icon-btn" data-action="music" aria-label="${musicOn ? "وقفي الموسيقى" : "شغّلي الموسيقى"}" title="${musicOn ? "وقفي الموسيقى" : "شغّلي الموسيقى"}">${musicOn ? "♫" : "♪"}</button>
+                <button class="icon-btn" data-action="motion" aria-label="${motion ? "وقفي الحركة" : "شغّلي الحركة"}" title="${motion ? "وقفي الحركة" : "شغّلي الحركة"}">${motion ? "✦" : "✧"}</button>
+                <button class="icon-btn" data-action="share" aria-label="شاركي الرابط" title="شاركي الرابط">↗</button>
+              </div>
+            </header>`;
+        }
+
+        function sceneWrap(content) {
+          return `<section class="scene">${content}</section>`;
+        }
+
+        function renderGate() {
+          const step = sceneData.step || 0;
+          if (!sceneData.started) {
+            sceneData.started = true;
+            schedule(() => { sceneData.step = Math.max(sceneData.step || 0, 1); render(); }, motion ? 1400 : 0);
+            schedule(() => { sceneData.step = 2; render(); }, motion ? 3000 : 0);
+          }
+          return sceneWrap(`
+            <p class="eyebrow">HAPPY BIRTHDAY</p>
+            <h1 class="shimmer">Demo</h1>
+            <p class="gate-copy">${step >= 1 ? "فيه كلام كان نفسي أقولهولك من زمان..." : ""}</p>
+            <p class="gate-copy second">${step >= 2 ? "المرة دي، مش هسيبه جوايا." : ""}</p>
+            <div class="gate-action">${step >= 2 ? '<button class="button-primary" data-action="open-story">افتحي حكايتك</button>' : ""}</div>
+            <button class="text-button" data-action="skip">تخطي المقدمة</button>
+            ${bloomVisible ? '<div class="bloom" aria-hidden="true"></div>' : ""}`);
+        }
+
+        function renderEnvelope() {
+          if (!sceneData.open) {
+            return sceneWrap(`
+              <button class="envelope" data-action="open-envelope" aria-label="افتحي الظرف">
+                <span class="envelope-flap"></span><span class="seal">D</span>
+                <span class="envelope-label">to Demo</span>
+              </button>
+              <button class="button-primary" data-action="open-envelope" style="margin-top:32px">افتحي الظرف</button>`);
+          }
+          const shown = sceneData.shown || 0;
+          if (!sceneData.revealStarted) {
+            sceneData.revealStarted = true;
+            const revealNext = () => {
+              if (scene !== "envelope" || sceneData.shown >= ENVELOPE_TEXT.length) return;
+              sceneData.shown += 1;
+              render();
+              schedule(revealNext, 1100);
+            };
+            schedule(revealNext, 1100);
+          }
+          return sceneWrap(`
+            <div class="letter-card glass">
+              ${ENVELOPE_TEXT.slice(0, shown).map((text, i) => `<p>${escapeHtml(text)}</p>`).join("")}
+              <div style="margin-top:24px">
+                ${shown < ENVELOPE_TEXT.length
+                  ? '<button class="button-soft" data-action="show-envelope">اعرضي الكلام كله</button>'
+                  : '<button class="button-primary" data-action="next">كمّلي</button>'}
+              </div>
+            </div>`);
+        }
+
+        function renderCake() {
+          const lit = sceneData.lit || [true, true, true, true, true];
+          const done = lit.every((isLit) => !isLit);
+          return sceneWrap(`
+            <p class="eyebrow">قبل أي كلام</p>
+            <h2>اتمني أمنية... وطفّي الشمع</h2>
+            <p class="muted" style="margin-top:12px">دوسي على كل شمعة</p>
+            <div class="cake">
+              <div class="candles">
+                ${lit.map((isLit, i) => `<button class="candle" data-action="candle" data-index="${i}" aria-label="شمعة ${i + 1}">
+                  <span class="flame ${isLit ? "" : "out"}"></span><span class="wick"></span>
+                </button>`).join("")}
+              </div>
+              <div class="cake-top"></div><div class="cake-line"></div>
+              <div class="cake-base"></div><div class="cake-plate"></div>
+            </div>
+            ${done
+              ? `${renderConfetti()}<h3 class="shimmer" style="margin:34px 0 0;font-size:clamp(32px,7vw,48px)">كل سنة وإنتِ طيبة يا ديمو</h3>
+                <button class="button-primary" data-action="next" style="margin-top:24px">يلا نبدأ الحكاية</button>`
+              : ""}`);
+        }
+
+        function renderConfetti() {
+          const random = seeded(3);
+          const colors = ["#d95082", "#e9bd68", "#d9c8ed", "#f3cede", "#c966ad"];
+          return `<div class="confetti" aria-hidden="true">${Array.from({ length: 60 }, (_, i) => {
+            const left = random() * 100;
+            const duration = 2.5 + random() * 2.5;
+            const delay = random() * 0.8;
+            return `<span class="confetti-piece" style="left:${left}%;background:${colors[i % colors.length]};animation-duration:${duration}s;animation-delay:${delay}s"></span>`;
+          }).join("")}</div>`;
+        }
+
+        function renderCards() {
+          if (sceneData.shown === undefined) sceneData.shown = 1;
+          if (!sceneData.started) {
+            sceneData.started = true;
+            const reveal = () => {
+              if (scene !== "cards" || sceneData.shown >= CARDS.length) return;
+              sceneData.shown += 1;
+              render();
+              schedule(reveal, 1400);
+            };
+            schedule(reveal, 1400);
+          }
+          const selected = sceneData.selected || [];
+          return sceneWrap(`
+            <h2>كلمات بتظهر ليكي</h2>
+            <p class="muted" style="margin:8px 0 0">دوسي على كل بطاقة</p>
+            <div class="cards-grid">
+              ${CARDS.slice(0, sceneData.shown).map((text, i) => `<button class="memory-card glass ${selected.includes(i) ? "selected" : ""}" data-action="card" data-index="${i}">
+                <span class="script gold-text">${i + 1}</span>${escapeHtml(text)}
+              </button>`).join("")}
+            </div>
+            ${selected.length === CARDS.length
+              ? '<p class="rose-text lead" style="margin:34px 0 0">بس لسه فيه كلام كتير متقالش...</p><button class="button-primary" data-action="next" style="margin-top:18px">كمّلي الحكاية</button>'
+              : ""}`);
+        }
+
+        function renderBox() {
+          const open = Boolean(sceneData.open);
+          return sceneWrap(`
+            <h2>حاجات تستاهلي تعرفيها</h2>
+            <button class="gift-box ${open ? "open" : ""}" data-action="gift" aria-label="${open ? "اقفلي الصندوق" : "افتحي الصندوق"}">
+              <span class="gift-lid"></span><span class="gift-body"></span><span class="gift-ribbon"></span>
+            </button>
+            <p class="muted" style="margin:2px 0 0;font-size:14px">${open ? "دوسي تاني لو عايزة تقفليه" : "دوسي على الهدية"}</p>
+            ${open ? `<div class="box-notes">
+              ${BOX_NOTES.map((text, i) => `<p class="box-note glass" style="animation-delay:${i * 0.3}s">${escapeHtml(text)}</p>`).join("")}
+              <button class="button-primary" data-action="next" style="justify-self:center;margin-top:8px">على السما</button>
+            </div>` : ""}`);
+        }
+
+        function renderStars() {
+          const positions = [{ x: 20, y: 30 }, { x: 70, y: 22 }, { x: 45, y: 68 }];
+          const random = seeded(11);
+          const dust = Array.from({ length: 40 }, () => ({
+            x: random() * 100, y: random() * 100, size: 1 + random() * 2.5, delay: random() * 3,
+          }));
+          const picked = sceneData.picked || [];
+          const active = sceneData.active;
+          return sceneWrap(`
+            <h2>نجوم الأمنيات</h2>
+            <p class="muted" style="margin:8px 0 0">اختاري نجمة، وشوفي أمنية من الأمنيات اللي بتمنّاهالك.</p>
+            <div class="stars-field">
+              ${dust.map((point) => `<span class="dust" style="left:${point.x}%;top:${point.y}%;width:${point.size}px;height:${point.size}px;animation-delay:${point.delay}s"></span>`).join("")}
+              ${positions.map((point, i) => `<button class="star ${picked.includes(i) ? "picked" : ""}" data-action="star" data-index="${i}" aria-label="نجمة ${i + 1}" style="left:${point.x}%;top:${point.y}%;animation-delay:${i * 0.7}s">★</button>`).join("")}
+            </div>
+            <p class="lead" style="min-height:62px;margin:22px 0 0;line-height:1.9">${active !== undefined ? `<span class="anim-fade-up">${escapeHtml(WISHES[active])}</span>` : ""}</p>
+            ${picked.length === WISHES.length
+              ? '<p class="rose-text" style="max-width:650px;font-size:23px;line-height:1.8">وفيه أمنية أخيرة... إنها تفضلي دايمًا شايفة قيمتك، حتى في الأيام اللي تنسي فيها قد إيه إنتِ شخص مميز.</p><button class="button-primary" data-action="next">افتحي الدفتر</button>'
+              : ""}`);
+        }
+
+        function renderChapters() {
+          return sceneWrap(`
+            <p class="eyebrow">دفتر ديمو</p>
+            <h2>الحكاية اللي بتتكشف</h2>
+            <div class="chapter-grid">
+              ${CHAPTERS.map((chapter, i) => `<button class="chapter-card glass" data-action="go" data-scene="${chapter.scene}">
+                <span class="chapter-number script gold-text">${["I", "II", "III", "IV"][i]}</span>
+                <span class="chapter-title">${escapeHtml(chapter.title)}</span>
+                <span class="chapter-status">${visited.includes(chapter.scene) ? "اتفتح" : "لسه مستنيكي"}</span>
+              </button>`).join("")}
+            </div>
+            <button class="button-primary" data-action="go" data-scene="letter" style="margin-top:30px">اقري الرسالة</button>`);
+        }
+
+        function saveLetterScroll(element) {
+          const max = element.scrollHeight - element.clientHeight;
+          const percent = max > 0 ? Math.min(100, Math.round((element.scrollTop / max) * 100)) : 100;
+          const fill = document.getElementById("letter-progress-fill");
+          if (fill) fill.style.width = `${percent}%`;
+          document.getElementById("letter-next")?.toggleAttribute("hidden", percent < 95);
+          try {
+            sessionStorage.setItem(LETTER_SCROLL_KEY, String(element.scrollTop));
+          } catch (error) {
+            console.warn("تعذر حفظ موضع قراءة الرسالة.", error);
+          }
+        }
+
+        function renderLetter() {
+          const paragraphs = LETTER_PARAGRAPHS.map((text) => `<p>${escapeHtml(text)}</p>`).join("");
+          return sceneWrap(`
+            <h2>الكلام اللي كان جوايا</h2>
+            <p class="muted" style="margin:10px 0 0">خدي وقتك في القراءة يا ديمو، لأن كل كلمة هنا مكتوبة علشانك.</p>
+            <div class="letter-tools">
+              <button class="button-soft" data-action="paper">${sceneData.paper === false ? "ورق فاتح" : "ورق وردي"}</button>
+              <button class="button-soft" data-action="copy-letter">انسخي الرسالة</button>
+              <button class="button-soft" data-action="letter-top">ابدئي القراءة من الأول</button>
+            </div>
+            <div class="letter-progress"><span id="letter-progress-fill" style="width:${sceneData.percent || 0}%"></span></div>
+            <article class="letter-scroll ${sceneData.paper === false ? "pink-paper" : ""}" id="letter-scroll">
+              ${paragraphs}<p class="letter-signature">— Omar</p>
+            </article>
+            <button class="button-primary" id="letter-next" data-action="next" ${sceneData.percent >= 95 ? "" : "hidden"} style="margin-top:22px">لسه فيه كلمة أخيرة...</button>`);
+        }
+
+        function renderHidden() {
+          const open = Boolean(sceneData.open);
+          return sceneWrap(`
+            <p class="rose-text" style="margin:0;font-size:30px;font-weight:700">لسه فيه كلمة أخيرة...</p>
+            ${!open
+              ? '<button class="hidden-envelope" data-action="hidden-open" aria-label="افتحي الظرف الصغير"><span>♡</span></button>'
+              : `<div class="hidden-letter glass">
+                  ${HIDDEN.map((text) => `<p>${escapeHtml(text)}</p>`).join("")}
+                </div>
+                ${renderGatherField()}
+                ${sceneData.gather ? '<button class="button-primary" data-action="next" style="margin-top:20px">النهاية</button>' : ""}`}`);
+        }
+
+        function renderGatherField() {
+          const random = seeded(5);
+          const dots = Array.from({ length: 30 }, () => ({
+            x: (random() - 0.5) * 600,
+            y: (random() - 0.5) * 300,
+          }));
+          return `<div class="gather-field">
+            ${dots.map((point, i) => `<span class="gather-dot" style="transform:translate(${sceneData.gather ? 0 : point.x}px,${sceneData.gather ? 0 : point.y}px) scale(${sceneData.gather ? 0 : 1});opacity:${sceneData.gather ? 0 : 1};transition-delay:${i * 20}ms"></span>`).join("")}
+            <span class="gather-name shimmer ${sceneData.gather ? "visible" : ""}">Demo</span>
+          </div>`;
+        }
+
+        function renderEnd() {
+          return sceneWrap(`
+            <h1 class="shimmer">Demo</h1>
+            <p class="gold-text" style="margin:6px 0 0;font-size:25px;font-weight:700">كل سنة وإنتِ طيبة</p>
+            <p class="lead" style="max-width:600px;margin:30px 0 0;line-height:1.9">فيه أشخاص بنقابلهم، وبعدها بنكتشف إن معرفتهم كانت هدية في حد ذاتها.</p>
+            <p class="rose-text" style="margin:14px 0 0;font-size:29px;font-weight:700">شكرًا إنك كنتِ جزء من الحكاية.</p>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:30px">
+              <button class="button-primary" data-action="replay">ارجعي عيشي الحكاية من جديد</button>
+              <button class="button-soft" data-action="go" data-scene="letter">ارجعي للرسالة</button>
+            </div>
+            <p class="muted" style="margin:50px 0 0;font-size:14px">اتعملت مخصوص علشانك، بكل التقدير والامتنان.</p>`);
+        }
+
+        function render() {
+          app.classList.toggle("no-motion", !motion);
+          renderPetals();
+          const renderScene = {
+            gate: renderGate,
+            envelope: renderEnvelope,
+            cake: renderCake,
+            cards: renderCards,
+            box: renderBox,
+            stars: renderStars,
+            chapters: renderChapters,
+            letter: renderLetter,
+            hidden: renderHidden,
+            end: renderEnd,
+          }[scene];
+          main.innerHTML = `${header()}${renderScene()}`;
+          if (scene === "letter") {
+            const article = document.getElementById("letter-scroll");
+            if (article) {
+              if (!sceneData.scrollRestored) {
+                try {
+                  article.scrollTop = Number(sessionStorage.getItem(LETTER_SCROLL_KEY) || 0);
+                } catch (error) {
+                  console.warn("تعذر استعادة موضع قراءة الرسالة.", error);
+                }
+                sceneData.scrollRestored = true;
+              }
+              saveLetterScroll(article);
+              article.addEventListener("scroll", () => saveLetterScroll(article), { passive: true });
+            }
+          }
+        }
+
+        function stopMusic() {
+          window.clearTimeout(musicTimer);
+          if (musicContext) {
+            musicContext.close().catch((error) => {
+              console.warn("تعذر إيقاف الموسيقى.", error);
+            });
+          }
+          musicContext = null;
+          musicOn = false;
+        }
+
+        function startMusic() {
+          try {
+            const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+            if (!AudioContextClass) {
+              notify("الموسيقى غير مدعومة في هذا المتصفح");
+              return;
+            }
+            const context = new AudioContextClass();
+            musicContext = context;
+            musicOn = true;
+            const playLoop = () => {
+              if (!musicContext || musicContext !== context) return;
+              let time = context.currentTime + 0.1;
+              const beat = 0.55;
+              MELODY.forEach(([frequency, duration]) => {
+                const oscillator = context.createOscillator();
+                const gain = context.createGain();
+                oscillator.type = "triangle";
+                oscillator.frequency.value = frequency;
+                gain.gain.setValueAtTime(0, time);
+                gain.gain.linearRampToValueAtTime(0.12, time + 0.02);
+                gain.gain.exponentialRampToValueAtTime(0.001, time + duration * beat * 1.8);
+                oscillator.connect(gain).connect(context.destination);
+                oscillator.start(time);
+                oscillator.stop(time + duration * beat * 2);
+                time += duration * beat;
+              });
+              musicTimer = window.setTimeout(playLoop, (time - context.currentTime + 2) * 1000);
+            };
+            playLoop();
+            render();
+          } catch (error) {
+            musicOn = false;
+            console.error("تعذر تشغيل الموسيقى.", error);
+            notify("مش قادرين نشغل الموسيقى على الجهاز ده");
+          }
+        }
+
+        function toggleMusic() {
+          if (musicOn) {
+            stopMusic();
+            render();
+          } else {
+            startMusic();
+          }
+        }
+
+        app.addEventListener("click", async (event) => {
+          const button = event.target.closest("[data-action]");
+          if (!button) return;
+          const action = button.dataset.action;
+          const index = Number(button.dataset.index);
+
+          if (action === "chapters" || (action === "go" && button.dataset.scene === "chapters")) {
+            go("chapters");
+          } else if (action === "go") {
+            go(button.dataset.scene);
+          } else if (action === "skip") {
+            go("chapters");
+          } else if (action === "open-story") {
+            if (motion) {
+              bloomVisible = true;
+              render();
+              schedule(() => go("envelope"), 1000);
+            } else {
+              go("envelope");
+            }
+          } else if (action === "open-envelope") {
+            sceneData.open = true;
+            render();
+          } else if (action === "show-envelope") {
+            sceneData.shown = ENVELOPE_TEXT.length;
+            sceneData.revealStarted = true;
+            clearSceneTimers();
+            render();
+          } else if (action === "next") {
+            const next = {
+              envelope: "cake",
+              cake: "cards",
+              cards: "box",
+              box: "stars",
+              stars: "chapters",
+              letter: "hidden",
+              hidden: "end",
+            }[scene];
+            if (next) go(next);
+          } else if (action === "candle") {
+            const lit = sceneData.lit || [true, true, true, true, true];
+            sceneData.lit = lit.map((value, i) => (i === index ? false : value));
+            render();
+          } else if (action === "card") {
+            const selected = sceneData.selected || [];
+            if (!selected.includes(index)) sceneData.selected = [...selected, index];
+            render();
+          } else if (action === "gift") {
+            sceneData.open = !sceneData.open;
+            render();
+          } else if (action === "star") {
+            const picked = sceneData.picked || [];
+            sceneData.active = index;
+            if (!picked.includes(index)) sceneData.picked = [...picked, index];
+            render();
+          } else if (action === "paper") {
+            sceneData.paper = sceneData.paper === false;
+            render();
+          } else if (action === "copy-letter") {
+            const copied = await copyText(LETTER_PARAGRAPHS.join("\n\n"));
+            notify(copied ? "اتنسخت الرسالة كلها" : "النسخ مش متاح هنا، جربي تحددي النص بإيدك");
+          } else if (action === "letter-top") {
+            document.getElementById("letter-scroll")?.scrollTo({ top: 0, behavior: motion ? "smooth" : "auto" });
+          } else if (action === "hidden-open") {
+            sceneData.open = true;
+            render();
+            schedule(() => {
+              if (scene !== "hidden") return;
+              sceneData.gather = true;
+              render();
+            }, 1800);
+          } else if (action === "replay") {
+            visited = ["gate"];
+            try {
+              sessionStorage.removeItem(LETTER_SCROLL_KEY);
+            } catch (error) {
+              console.warn("تعذر مسح موضع الرسالة المحفوظ.", error);
+            }
+            stopMusic();
+            go("gate");
+          } else if (action === "share") {
+            await share();
+          } else if (action === "motion") {
+            motion = !motion;
+            render();
+          } else if (action === "music") {
+            toggleMusic();
+          }
+        });
+
+        window.addEventListener("pagehide", stopMusic);
+        render();
+      })();
+    </script>
+  </body>
+</html>
